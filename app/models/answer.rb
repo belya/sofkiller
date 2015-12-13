@@ -1,5 +1,5 @@
 class Answer < ActiveRecord::Base
-  belongs_to :answer
+  belongs_to :user
   belongs_to :question
   validates :text, presence: true
   validates :user_id, presence: true

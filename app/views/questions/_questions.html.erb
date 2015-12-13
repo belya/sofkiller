@@ -1,0 +1,8 @@
+<div class="container">
+  <% questions.each do |question| %>
+    <blockquote class="<%= cycle('', 'blockquote-reverse') %>">
+      <p><%= link_to question.text, question %></p>
+      <small><%= question.user.email %></small>
+    </blockquote>
+  <% end %>
+</div>

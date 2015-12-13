@@ -1,12 +1,10 @@
 <div class="page-header">
   <h1><%= @category.title %></h1>
-  <%= link_to("Create question", new_category_question_path(@category), class:"btn btn-primary") if can? :create, Question %>
 </div>
 <div class="container">
-  <% @category.questions.first(3).each do |questions| %>
-    <blockquote class="<%= cycle('', 'blockquote-reverse') %>">
-      <p><%= question.first.text %></p>
-      <small><%= question.user.email %></small>
-    </blockquote>
-  <% end %>
+  <p>
+    <%= link_to("Edit category", edit_category_path(@category), class:"btn btn-primary") if can? :update, Category %>
+    <%= link_to("Create question", new_category_question_path(@category), class:"btn btn-primary pull-right") if can? :create, Question %>
+  </p>
+  <%= render 'questions/questions', questions: @category.questions %>
 </div>

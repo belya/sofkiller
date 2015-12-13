@@ -1,12 +1,8 @@
 class QuestionsController < ApplicationController
   before_action :set_question, only: [:show, :edit, :update, :destroy]
-  before_action :set_category
+  before_action :set_category, only: [:new, :create]
   load_and_authorize_resource :category
   load_and_authorize_resource :question, through: :category
-  
-  def index
-    @questions = Question.where(search_question_params)
-  end
 
   def new
     @question = Question.new
@@ -47,9 +43,6 @@ class QuestionsController < ApplicationController
   end
 
   private
-    def search_question_params
-      params.permit(:category_id, :user_id)
-    end
 
     def question_params
       params.require(:question).permit(:category_id, :user_id, :text)

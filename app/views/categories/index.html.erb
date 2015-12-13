@@ -1,15 +1,10 @@
 <div class="page-header">
   <h1>Categories</h1>
-  <%= link_to("Create category", new_category_path, class:"btn btn-primary") if can? :create, Category %>
 </div>
 <div class="container">
+  <%= link_to("Create category", new_category_path, class:"btn btn-primary pull-right") if can? :create, Category %>
   <% @categories.each do |category| %>
     <h2><%= link_to category.title, category %></h2>
-    <% category.questions.first(3).each do |questions| %>
-      <blockquote class="<%= cycle('', 'blockquote-reverse') %>">
-        <p><%= question.first.text %></p>
-        <small><%= question.user.email %></small>
-      </blockquote>
-    <% end %>
+    <%= render 'questions/questions', questions: category.questions.first(1) %>
   <% end %>
 </div>

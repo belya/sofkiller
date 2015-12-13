@@ -1,7 +1,8 @@
 class AnswersController < ApplicationController
   before_action :set_answer, only: [:show, :edit, :update, :destroy]
-  before_action :set_question
-  load_and_authorize_resource :question
+  before_action :set_question, only: [:new, :create]
+  load_and_authorize_resource :category
+  load_and_authorize_resource :question, through: :category
   load_and_authorize_resource :answer, through: :question
   
   def new
@@ -12,7 +13,7 @@ class AnswersController < ApplicationController
     @answer = Answer.new(answer_params)
     respond_to do |format|
       if @answer.save
-        format.html { redirect_to @answer }
+        format.html { redirect_to @question }
       else
         format.html { render :new }
       end
@@ -25,7 +26,7 @@ class AnswersController < ApplicationController
   def update
     respond_to do |format|
       if @answer.update(answer_params)
-        format.html { redirect_to @answer }
+        format.html { redirect_to answer.question }
       else
         format.html { render :new }
       end
@@ -43,7 +44,7 @@ class AnswersController < ApplicationController
   end
 
   private
-    def question_params
+    def answer_params
       params.require(:answer).permit(:question_id, :user_id, :text);
     end
 
