@@ -36,6 +36,14 @@ gem 'devise'
 
 gem 'cancancan'
 
+# gem 'simple_form'
+
+# gem 'twitter-bootswatch-rails'
+
+# gem 'devise-bootstrap-views'
+
+# gem 'will_paginate'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

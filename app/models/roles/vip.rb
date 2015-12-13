@@ -1,2 +1,0 @@
-class Vip < User
-end
