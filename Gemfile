@@ -12,7 +12,7 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
+gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -36,13 +36,13 @@ gem 'devise'
 
 gem 'cancancan'
 
-# gem 'simple_form'
+gem 'simple_form'
 
-# gem 'twitter-bootswatch-rails'
+gem 'twitter-bootswatch-rails'
 
-# gem 'devise-bootstrap-views'
+gem 'devise-bootstrap-views'
 
-# gem 'will_paginate'
+gem 'will_paginate'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

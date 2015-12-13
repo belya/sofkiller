@@ -1,7 +1,9 @@
 class QuestionsController < ApplicationController
   before_action :set_question, only: [:show, :edit, :update, :destroy]
   before_action :set_category
-
+  load_and_authorize_resource :category
+  load_and_authorize_resource :question, through: :category
+  
   def index
     @questions = Question.where(search_question_params)
   end

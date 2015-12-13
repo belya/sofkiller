@@ -1,7 +1,9 @@
 class AnswersController < ApplicationController
   before_action :set_answer, only: [:show, :edit, :update, :destroy]
   before_action :set_question
-
+  load_and_authorize_resource :question
+  load_and_authorize_resource :answer, through: :question
+  
   def new
     @answers = Answer.new
   end

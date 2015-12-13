@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  devise_for :users
+  
   resources :users, except: [:new, :create]
 
   resources :categories do
@@ -9,8 +11,6 @@ Rails.application.routes.draw do
   resources :questions do
     resources :answers, except: [:index]
   end
-
-  devise_for :users
 
   root 'categories#index'
   
