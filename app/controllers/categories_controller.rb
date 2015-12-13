@@ -34,6 +34,14 @@ class CategoriesController < ApplicationController
   end
 
   def show
+    case params[:with_answers]
+    when '1'
+      @questions = @category.questions.answered
+    when '0'
+      @questions = @category.questions.not_answered
+    else
+      @questions = @category.questions
+    end
   end
 
   def destroy

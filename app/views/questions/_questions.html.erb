@@ -1,7 +1,10 @@
 <div class="container">
   <% questions.each do |question| %>
     <blockquote class="<%= cycle('', 'blockquote-reverse') %>">
-      <p><%= link_to question.text, question %></p>
+      <p><%= link_to question.text, question %> <%= "(no answer)" if question.answers.empty? %> </p>
+      <p>
+        <%= link_to "Edit question", edit_question_path(question) if can? :update, question %>
+      </p>
       <small><%= question.user.email %></small>
     </blockquote>
   <% end %>

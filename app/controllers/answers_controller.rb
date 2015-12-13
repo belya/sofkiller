@@ -1,12 +1,13 @@
 class AnswersController < ApplicationController
-  before_action :set_answer, only: [:show, :edit, :update, :destroy]
+  before_action :set_answer, only: [:edit, :update, :destroy]
   before_action :set_question, only: [:new, :create]
   load_and_authorize_resource :category
   load_and_authorize_resource :question, through: :category
   load_and_authorize_resource :answer, through: :question
   
   def new
-    @answers = Answer.new
+    @answer = Answer.new(params.permit(:question_id))
+    @answer.user = current_user
   end
 
   def create
@@ -33,13 +34,10 @@ class AnswersController < ApplicationController
     end
   end
 
-  def show
-  end
-
   def destroy
     @answer.destroy
     respond_to do |format|
-      format.html { redirect_to answers_url }
+      format.html { redirect_to @answer.question }
     end
   end
 

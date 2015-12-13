@@ -2,3 +2,6 @@
   <h1>Edit question</h1>
 </div>
 <%= render 'form' %>
+<div class="container">
+  <%= link_to("Remove question", @question, method: :delete, class:"btn btn-default") if can? :destroy, @question %>
+</div>

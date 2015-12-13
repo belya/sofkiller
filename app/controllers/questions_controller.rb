@@ -5,7 +5,8 @@ class QuestionsController < ApplicationController
   load_and_authorize_resource :question, through: :category
 
   def new
-    @question = Question.new
+    @question = Question.new(params.permit(:category_id))
+    @question.user = current_user
   end
 
   def create
@@ -38,7 +39,7 @@ class QuestionsController < ApplicationController
   def destroy
     @question.destroy
     respond_to do |format|
-      format.html { redirect_to questions_url }
+      format.html { redirect_to @question.category }
     end
   end
 

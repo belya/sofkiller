@@ -2,3 +2,6 @@
   <h1>Edit category</h1>
 </div>
 <%= render 'form' %>
+<div class="container">
+  <%= link_to("Remove category", @category, method: :delete, class:"btn btn-default") if can? :destroy, @category %>
+</div>
