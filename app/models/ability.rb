@@ -14,9 +14,11 @@ class Ability
       can :manage, Question, user_id: user.id
       can :manage, Answer, user_id: user.id
       can :manage, User, id: user.id
+      cannot :change_status, User
     end
 
     def prepare_admin_abilities(user)
       can :manage, :all
+      can :change_status, User
     end
 end

@@ -29,6 +29,10 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:name)
+      if can? :change_status, @user
+        params.require(:user).permit(:name, :status)
+      else
+        params.require(:user).permit(:name)
+      end
     end
 end

@@ -7,7 +7,7 @@
       <p>
         <%= link_to "Edit answer", edit_answer_path(answer) if can? :update, answer %>
       </p>
-      <small><%= answer.user.email %></small>
+      <small><%= answer.user.name %></small>
     </blockquote>
   <% end %>
 </div>

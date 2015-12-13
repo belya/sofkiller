@@ -9,6 +9,6 @@
   <div class="jumbotron">
     <h3><%= @question.text %></h3>
   </div>
-  <p class="text-right"><%= @question.user.email %></p>
+  <p class="text-right"><%= @question.user.name %></p>
   <%= render 'answers/answers', answers: @question.answers %>
 </div>
