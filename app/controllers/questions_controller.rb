@@ -48,15 +48,15 @@ class QuestionsController < ApplicationController
 
   private
     def search_question_params
-      params.permit(:category_id, :user_id);
+      params.permit(:category_id, :user_id)
     end
 
     def question_params
-      params.permit(:category_id, :user_id, :text);
+      params.require(:question).permit(:category_id, :user_id, :text)
     end
 
     def set_question
-      @question = Question.find(params[:id]);
+      @question = Question.find(params[:id])
     end
 
     def set_category

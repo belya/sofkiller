@@ -6,5 +6,5 @@ class User < ActiveRecord::Base
   has_many :questions, dependent: :destroy
   has_many :answers, dependent: :destroy
   validates :status, presence: true
-  enum status: [:novice, :user, :trusted, :vip]
+  enum status: [:novice, :user, :trusted, :vip, :admin]
 end

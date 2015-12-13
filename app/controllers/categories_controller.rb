@@ -2,7 +2,7 @@ class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
   load_and_authorize_resource
   def index
-    @categories = Category.where(search_category_params)
+    @categories = Category.all
   end
 
   def new
@@ -28,7 +28,7 @@ class CategoriesController < ApplicationController
       if @category.update(category_params)
         format.html { redirect_to @category }
       else
-        format.html { render :new }
+        format.html { render :edit }
       end
     end
   end
@@ -44,15 +44,12 @@ class CategoriesController < ApplicationController
   end
 
   private
-    def search_category_params
-      params.permit(:category_id, :user_id);
-    end
 
     def category_params
-      params.permit(:category_id, :user_id, :text);
+      params.require(:category).permit(:title)
     end
 
     def set_category
-      @category = Category.find(params[:id]);
+      @category = Category.find(params[:id])
     end
 end
