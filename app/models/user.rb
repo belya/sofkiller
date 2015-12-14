@@ -11,6 +11,6 @@ class User < ActiveRecord::Base
 
   enum status: [:novice, :user, :trusted, :vip, :admin]
 
-  after_create -> {self.name = email}
+  before_create -> {self.name = email}
 
 end
