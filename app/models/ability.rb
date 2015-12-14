@@ -12,6 +12,7 @@ class Ability
   private 
     def prepare_novice_abilities(user) 
       can :read, :all
+      cannot :read, User
       can :manage, User, id: user.id
       cannot :change_status, User
     end

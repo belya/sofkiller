@@ -24,7 +24,7 @@ class QuestionsController < ApplicationController
     @question = Question.new(question_params)
     respond_to do |format|
       if @question.save
-        format.html { redirect_to @question, notice: "Question successfully created" }
+        format.html { redirect_to @question, notice: t(:question_created) }
       else
         format.html { render :new }
       end
@@ -37,7 +37,7 @@ class QuestionsController < ApplicationController
   def update
     respond_to do |format|
       if @question.update(question_params)
-        format.html { redirect_to @question, notice: "Question successfully updated" }
+        format.html { redirect_to @question, notice: t(:question_updated) }
       else
         format.html { render :new }
       end
@@ -50,7 +50,7 @@ class QuestionsController < ApplicationController
   def destroy
     @question.destroy
     respond_to do |format|
-      format.html { redirect_to @question.category, notice: "Question successfully deleted" }
+      format.html { redirect_to @question.category, notice: t(:question_deleted) }
     end
   end
 

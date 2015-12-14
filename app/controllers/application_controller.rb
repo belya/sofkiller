@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   layout 'yeti'
 
   rescue_from CanCan::AccessDenied do |exception|
-    redirect_to new_user_session_path, notice: "Please sign up or in"
+    redirect_to new_user_session_path, notice: t(:access_denied_notice)
   end
 
 end
