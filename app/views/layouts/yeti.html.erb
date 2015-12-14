@@ -33,7 +33,7 @@
           <ul class="nav navbar-nav">
             <li class="active"><%= link_to "All", categories_path %></li>
             <% Category.first(5).each do |category| %>
-              <li><%= link_to category.title, category %></li>
+              <li><%= link_to category.title, category_questions_path(category) %></li>
             <% end %>
           </ul>
           <ul class="nav navbar-nav navbar-right">
@@ -51,6 +51,18 @@
       </div>
     </nav>
     <div class="container">
+      <% if notice %>
+        <div class="alert alert-dismissible alert-info">
+          <p><%= notice %></p>
+        </div>
+      <% end %>
+      <% if current_user && current_user.novice? %>
+        <div class="alert alert-dismissible alert-danger">
+          <p>
+            Please wait confirmation of your account
+          </p>
+        </div>
+      <% end %>
       <%= yield %>
     </div>
     <!-- Javascripts

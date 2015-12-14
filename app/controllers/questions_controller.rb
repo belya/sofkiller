@@ -4,6 +4,17 @@ class QuestionsController < ApplicationController
   load_and_authorize_resource :category
   load_and_authorize_resource :question, through: :category
 
+  def index
+    case params[:with_answers]
+    when '1'
+      @questions = Question.answered
+    when '0'
+      @questions = Question.not_answered
+    else
+      @questions = Question.all
+    end
+  end
+
   def new
     @question = Question.new(params.permit(:category_id))
     @question.user = current_user
@@ -13,7 +24,7 @@ class QuestionsController < ApplicationController
     @question = Question.new(question_params)
     respond_to do |format|
       if @question.save
-        format.html { redirect_to @question }
+        format.html { redirect_to @question, notice: "Question successfully created" }
       else
         format.html { render :new }
       end
@@ -26,7 +37,7 @@ class QuestionsController < ApplicationController
   def update
     respond_to do |format|
       if @question.update(question_params)
-        format.html { redirect_to @question }
+        format.html { redirect_to @question, notice: "Question successfully updated" }
       else
         format.html { render :new }
       end
@@ -39,7 +50,7 @@ class QuestionsController < ApplicationController
   def destroy
     @question.destroy
     respond_to do |format|
-      format.html { redirect_to @question.category }
+      format.html { redirect_to @question.category, notice: "Question successfully deleted" }
     end
   end
 

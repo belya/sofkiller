@@ -5,7 +5,7 @@
       <p>
         <%= link_to "Edit question", edit_question_path(question) if can? :update, question %>
       </p>
-      <small><%= question.user.name %></small>
+      <small><%= link_to question.user.name, question.user %></small>
     </blockquote>
   <% end %>
 </div>

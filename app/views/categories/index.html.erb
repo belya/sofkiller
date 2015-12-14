@@ -4,7 +4,7 @@
 <div class="container">
   <%= link_to("Create category", new_category_path, class:"btn btn-primary pull-right") if can? :create, Category %>
   <% @categories.each do |category| %>
-    <h2><%= link_to category.title, category %></h2>
+    <h2><%= link_to category.title, category_questions_path(category) %></h2>
     <%= render 'questions/questions', questions: category.questions.first(1) %>
   <% end %>
 </div>

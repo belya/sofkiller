@@ -1,15 +1,10 @@
 <div class="page-header">
-  <h1><%= @category.title %></h1>
+  <h1><%= link_to @category.title, category_questions_path(@category) %></h1>
 </div>
 <div class="container">
-  <p>
-    <ul class="nav nav-pills">
-      <li class="active"><%= link_to("Edit category", edit_category_path(@category), class:"btn btn-primary") if can? :update, Category %></li>
-      <li class="active"><%= link_to("Create question", new_category_question_path(@category), class:"btn btn-primary pull-right") if can? :create, Question %></li>
-      <li><%= link_to "All", @category %></li>
-      <li><%= link_to "With answers", category_path(@category, with_answers: 1) %></li>
-      <li><%= link_to "Without answer", category_path(@category, with_answers: 0) %></li>
-    </ul>
-  </p>
-  <%= render 'questions/questions', questions: @questions %>
+  <ul class="nav nav-pills">
+    <li class="active"><%= link_to("Edit category", edit_category_path(@category), class:"btn btn-primary") if can? :update, Category %></li>
+    <li class="active"><%= link_to("Create question", new_category_question_path(@category), class:"btn btn-primary pull-right") if can? :create, Question %></li>
+  </ul>
+  <%= render 'questions/questions', questions: @category.questions.first(3) %>
 </div>

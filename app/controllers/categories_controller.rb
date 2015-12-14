@@ -13,7 +13,7 @@ class CategoriesController < ApplicationController
     @category = Category.new(category_params)
     respond_to do |format|
       if @category.save
-        format.html { redirect_to @category }
+        format.html { redirect_to @category, notice: "Category successfully created" }
       else
         format.html { render :new }
       end
@@ -26,7 +26,7 @@ class CategoriesController < ApplicationController
   def update
     respond_to do |format|
       if @category.update(category_params)
-        format.html { redirect_to @category }
+        format.html { redirect_to @category, notice: "Category successfully updated" }
       else
         format.html { render :edit }
       end
@@ -34,20 +34,12 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    case params[:with_answers]
-    when '1'
-      @questions = @category.questions.answered
-    when '0'
-      @questions = @category.questions.not_answered
-    else
-      @questions = @category.questions
-    end
   end
 
   def destroy
     @category.destroy
     respond_to do |format|
-      format.html { redirect_to categories_url }
+      format.html { redirect_to categories_url, notice: "Category successfully removed" }
     end
   end
 
