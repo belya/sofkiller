@@ -1,17 +1,17 @@
 class QuestionsController < ApplicationController
   before_action :set_question, only: [:show, :edit, :update, :destroy]
-  before_action :set_category, only: [:new, :create]
+  before_action :set_category, only: [:index, :new, :create]
   load_and_authorize_resource :category
   load_and_authorize_resource :question, through: :category
 
   def index
     case params[:with_answers]
     when '1'
-      @questions = Question.answered
+      @questions = @category.questions.answered
     when '0'
-      @questions = Question.not_answered
+      @questions = @category.questions.not_answered
     else
-      @questions = Question.all
+      @questions = @category.questions
     end
   end
 
