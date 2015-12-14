@@ -1,9 +1,20 @@
+<div class="page-header">
+  <h1>Users</h1>
+</div>
 <div class="container">
   <% users.each do |user| %>
-    <div class="row">
-      <p>
-        <%= link_to user.email, user %> (<%= user.questions.length %> questions) 
-      </p>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3><%= link_to user.name, user %></h3>
+      </div>
+      <div class="panel-body">
+        <p>
+          <%= user.email %>
+        </p>
+        <p>
+          <%= user.questions.length %> questions
+        </p>
+      </div>
     </div>
   <% end %>
 </div>
