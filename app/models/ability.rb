@@ -12,7 +12,6 @@ class Ability
   private 
     def prepare_novice_abilities(user) 
       can :read, :all
-      cannot :read, User
       can :manage, User, id: user.id
       cannot :change_status, User
     end
@@ -25,5 +24,7 @@ class Ability
     def prepare_admin_abilities(user)
       can :manage, :all
       can :change_status, User
+      can :access, :rails_admin
+      can :dashboard
     end
 end
